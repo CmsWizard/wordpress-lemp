@@ -61,17 +61,17 @@ var06=$(pwgen -s 16 1)
 
 # STEP1 configuring PHP
 echo | sudo add-apt-repository ppa:ondrej/php
-echo | sudo add-apt-repository ppa:ondrej/nginx
+echo | sudo add-apt-repository ppa:ondrej/nginx-mainline
 sudo apt-get update
-sudo apt install php7.4-fpm php7.4-common php7.4-mysql php7.4-gmp php7.4-curl php7.4-intl php7.4-mbstring php7.4-xmlrpc php7.4-gd php7.4-xml php7.4-soap php7.4-cli php7.4-zip php7.4-soap -y
-sudo apt-get install php-imagick -y
-sudo apt-get install php7.4-imagick -y
-sudo bash -c 'echo short_open_tag = On >> /etc/php/7.4/fpm/php.ini'
-sudo bash -c 'echo cgi.fix_pathinfo = 0 >> /etc/php/7.4/fpm/php.ini'
-sudo bash -c 'echo date.timezone = America/Chicago >> /etc/php/7.4/fpm/php.ini'
-sudo sed -i "s/max_execution_time = 30/max_execution_time = 600/g" /etc/php/7.4/fpm/php.ini
-sudo sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 64M/g" /etc/php/7.4/fpm/php.ini
-sudo sed -i "s/post_max_size = 8M/post_max_size = 64M/g" /etc/php/7.4/fpm/php.ini
+
+sudo apt-get install php8.0-fpm php8.0-common php8.0-mysql php8.0-gmp php8.0-curl php8.0-intl php8.0-mbstring php8.0-xmlrpc php8.0-gd php8.0-xml php8.0-cli php8.0-zip php8.0-soap php8.0-imagick -y
+
+sudo bash -c 'echo short_open_tag = On >> /etc/php/8.0/fpm/php.ini'
+sudo bash -c 'echo cgi.fix_pathinfo = 0 >> /etc/php/8.0/fpm/php.ini'
+sudo bash -c 'echo date.timezone = America/Chicago >> /etc/php/8.0/fpm/php.ini'
+sudo sed -i "s/max_execution_time = 30/max_execution_time = 600/g" /etc/php/8.0/fpm/php.ini
+sudo sed -i "s/upload_max_filesize = 2M/upload_max_filesize = 64M/g" /etc/php/8.0/fpm/php.ini
+sudo sed -i "s/post_max_size = 8M/post_max_size = 64M/g" /etc/php/8.0/fpm/php.ini
 
 
 # STEP2 configuring DATABASE
@@ -153,7 +153,7 @@ sudo rm /tmp/latest.tar.gz
 # Restrating services
 sudo systemctl restart nginx.service
 sudo systemctl restart mysql.service
-sudo systemctl restart php7.4-fpm
+sudo systemctl restart php8.0-fpm
 
 echo "========== please save this info in a secure place =========="
 echo "your mysql username: root"
